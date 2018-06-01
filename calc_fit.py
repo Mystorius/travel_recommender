@@ -3,8 +3,7 @@ from sqlite3 import Error
 import pickle
 import operator
 
-path = r"C:\Users\Mystorius\Desktop\travel_recommender"
-db_path = r"C:\Users\Mystorius\Desktop\travel_recommender\sqlite.db"
+db_path = r"sqlite.db"
 
 conn = sqlite3.connect(db_path)
 cursor = conn.cursor()
@@ -124,7 +123,7 @@ def calc_best_fit(id, type):
 
         #best_fit = query_db("""Select name from countries where id = {}""".format(list_result_sorted[1][0]))
 
-calc_best_fit(144, "culture")
-calc_best_fit(144, "nightlife")
-calc_best_fit(144, "activity")
+#calc_best_fit(144, "culture")
+#calc_best_fit(144, "nightlife")
+#calc_best_fit(144, "activity")
 

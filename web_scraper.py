@@ -6,9 +6,10 @@ from requests.exceptions import RequestException
 from contextlib import closing
 from bs4 import BeautifulSoup
 
-db_path = r"C:\Users\Mystorius\Desktop\travel_recommender\sqlite.db"
-## create database
+db_path = r"sqlite.db"
 
+
+## create database
 def create_db(db_file):
     """ create a database connection to a SQLite database """
     try:

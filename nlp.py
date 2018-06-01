@@ -2,11 +2,10 @@ import sqlite3
 from sqlite3 import Error
 import gensim
 from nltk import word_tokenize
-import operator
 import pickle
 
-path = r"C:\Users\Mystorius\Desktop\travel_recommender"
-db_path = r"C:\Users\Mystorius\Desktop\travel_recommender\sqlite.db"
+path = r"\data"
+db_path = r"sqlite.db"
 
 
 ## create table for similarity storage in sql db
@@ -104,7 +103,7 @@ def compare_to(id):
 
 
 ## compares for each country and insert data in db
-def Main():
+def insert_data():
     for i in range(1, 323):
         print("start with id: %s" % i)
         global_list_result, name = compare_to(i)
@@ -120,9 +119,5 @@ def Main():
                            pickle.dumps(global_list_result[8]),
                            pickle.dumps(global_list_result[9]),
                            pickle.dumps(global_list_result[10]))
-
-
-if __name__ == '__main__':
-        Main()
-
+#insert_data()
 
