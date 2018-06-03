@@ -3,10 +3,6 @@ from calc_fit import query_db
 
 
 def Main():
-    # id_list = []
-    # for i in range(0,3):
-    #     country_id = input("Please input country No. {} you like: ".format(i + 1))
-    #     id_list.append(country_id)
     name = input("Please input country you like: ")
     country_id = query_db("""Select id from countries where name like "{}" """.format(name))
     type = input("Please input your favorite journey type. You get to choose from: culture, nightlife, activity: ")

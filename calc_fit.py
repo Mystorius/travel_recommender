@@ -2,6 +2,7 @@ import sqlite3
 from sqlite3 import Error
 import pickle
 import operator
+from nlp import query_db
 
 db_path = r"sqlite.db"
 
@@ -23,6 +24,7 @@ def create_table():
         conn.close()
 #create_table()
 
+
 def insert_matrix(v1, v2, v3, v4, v5, v6, v7, v8, v9 ,v10, v11):
     try:
         conn = sqlite3.connect(db_path)
@@ -37,6 +39,7 @@ def insert_matrix(v1, v2, v3, v4, v5, v6, v7, v8, v9 ,v10, v11):
     finally:
         conn.close()
 
+
 def create_matrix():
     matrix_old = {"culture":   [0.7, 0.5, 0.5, 0.5, 0.3, 1, 1, 0.3, 0.7, 0.3, 0.5],
               "nightlife": [0.2, 0.5, 0.5, 0.5, 0.5, 0.3, 0.3, 1, 1, 1, 0.7],
@@ -44,32 +47,28 @@ def create_matrix():
     matrix = {"culture":   [1,1,1,1,0,2,2,0,0,0,1],
               "nightlife": [0,1,1,1,1,0,0,1,1,2,1],
               "activity":  [1,1,1,1,1,0,1,2,2,1,2]}
-    # for i in range(1, 11):
-    #     insert = []
-    #     for key, item in matrix.items():
-    #         insert.append(item[i])
-    #     insert_matrix(insert[0], insert[1], insert[2])
+
     for key, items in matrix.items():
         insert_matrix(items[0],items[1],items[2],items[3],items[4],items[5],items[6],items[7],items[8],items[9],items[10])
 #create_matrix()
 
 
-def query_db(query):
-    result = []
-    try:
-        conn = sqlite3.connect(db_path)
-        cursor = conn.cursor()
-        output = cursor.execute(query)
-        conn.commit()
-    except Error as e:
-        print(e)
-    finally:
-        for i in output:
-            for j in i:
-                result.append(j)
-        conn.close()
-        return result
-
+# def query_db(query):
+#     result = []
+#     try:
+#         conn = sqlite3.connect(db_path)
+#         cursor = conn.cursor()
+#         output = cursor.execute(query)
+#         conn.commit()
+#     except Error as e:
+#         print(e)
+#     finally:
+#         for i in output:
+#             for j in i:
+#                 result.append(j)
+#         conn.close()
+#         return result
+#
 
 def get_type_id(type):
     if type == "culture":
@@ -116,12 +115,6 @@ def calc_best_fit(id, type):
     fit1 = query_db("""Select name from countries where id = {}""".format(sum_list_sorted[2][0]))
     fit2 = query_db("""Select name from countries where id = {}""".format(sum_list_sorted[3][0]))
     return fit0, fit1, fit2
-        # def compare_about():
-        #     list_result_sorted = sorted(about, key=operator.itemgetter(1), reverse=True)
-        #     print(list_result_sorted)
-        # compare_about()
-
-        #best_fit = query_db("""Select name from countries where id = {}""".format(list_result_sorted[1][0]))
 
 #calc_best_fit(144, "culture")
 #calc_best_fit(144, "nightlife")

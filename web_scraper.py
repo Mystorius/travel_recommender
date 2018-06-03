@@ -1,5 +1,4 @@
 import sqlite3
-import os
 from sqlite3 import Error
 from requests import get
 from requests.exceptions import RequestException
@@ -26,6 +25,8 @@ def create_db(db_file):
         conn.close()
 #create_db(db_path)
 
+
+## insert data into db
 def query_db(name1, about1, area1, population1, capital1, safety1, terrorism1, entry1, health1, history1, culture1, attractions1, shopping1, nightlife1, getting_around1):
     try:
         conn = sqlite3.connect(db_path)
