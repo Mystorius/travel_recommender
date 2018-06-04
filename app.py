@@ -4,7 +4,7 @@ from calc_fit import query_db
 '''This section is just a user based input and my given outputs'''
 
 def Main():
-    name = input("Please input country you like: ")
+    name = input("Please input country you like [for example Germany]: ")
     country_id = query_db("""Select id from countries where name like '{}' """.format(name))
     type = input("Please input your favorite journey type. You get to choose from: culture, nightlife, activity: ")
     fit0, fit1, fit2 = calc_best_fit(country_id[0], type)
